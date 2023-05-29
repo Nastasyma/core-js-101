@@ -243,10 +243,22 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let resultStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (input.includes(str[i])) {
+      resultStr += output[input.indexOf(str[i])];
+    } else {
+      resultStr += str[i];
+    }
+  }
+  // console.log(resultStr);
+  return resultStr;
 }
-
+// encodeToRot13('Gb trg gb gur bgure fvqr!');
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
@@ -260,10 +272,13 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  // throw new Error('Not implemented');
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
+  }
+  return false;
 }
-
 
 /**
  * Returns playid card id.
@@ -289,10 +304,21 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  // throw new Error('Not implemented');
+  const valueArr = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
+  const result = valueArr.indexOf(value);
+  // console.log(result);
+  return result;
 }
-
+// getCardId('A♣');
+// getCardId('2♣');
+// getCardId('K♠');
 
 module.exports = {
   concatenateStrings,
