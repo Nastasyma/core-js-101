@@ -123,10 +123,9 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   const a = Math.atan2(y2, x2);
   const b = Math.atan2(y1, x1);
   const result = Math.abs(a - b);
-  // console.log(result);
   return result;
 }
-// getAngleBetweenVectors(0, 1, -1, 0);
+
 /**
  * Returns a last digit of a integer number.
  *
@@ -143,10 +142,8 @@ function getLastDigit(value) {
   // throw new Error('Not implemented');
   const string = value.toString();
   const last = string.split('')[string.length - 1];
-  // console.log(last);
   return last;
 }
-// getLastDigit(377);
 
 /**
  * Returns a number by given string representation.
@@ -181,10 +178,8 @@ function getParallelepipedDiagonal(a, b, c) {
   // throw new Error('Not implemented');
   const abc = (a * a) + (b * b) + (c * c);
   const d = Math.sqrt(abc);
-  // console.log(d);
   return d;
 }
-// getParallelepipedDiagonal(3, 3, 3);
 
 /**
  * Returns the number rounded to specified power of 10.
@@ -206,12 +201,9 @@ function getParallelepipedDiagonal(a, b, c) {
 function roundToPowerOfTen(num, pow) {
   // throw new Error('Not implemented');
   const a = 10 ** pow;
-  // console.log(a);
   const b = Math.round(num / a) * a;
-  // console.log(b);
   return b;
 }
-// roundToPowerOfTen(1678, 3);
 
 /**
  * Returns true is the number is prime; otherwise false.
@@ -235,7 +227,6 @@ function isPrime(n) {
   let a = true;
   if (n > 1) {
     for (let i = 2; i < n; i += 1) {
-      // console.log(n % i);
       if (n % i === 0) {
         a = false;
       }
@@ -243,8 +234,6 @@ function isPrime(n) {
   }
   return a;
 }
-// isPrime(17);
-// isPrime(16);
 
 /**
  * Tries to convert value to number and returns it if conversion was successful;
@@ -264,16 +253,10 @@ function isPrime(n) {
 function toNumber(value, def) {
   // throw new Error('Not implemented');
   if (+value) {
-    // console.log(+value);
     return +value;
   }
-  // console.log(def);
   return def;
 }
-// toNumber(null, 0);
-// toNumber('test', 0);
-// toNumber('1', 0);
-// toNumber(undefined, -1);
 
 module.exports = {
   getRectangleArea,
