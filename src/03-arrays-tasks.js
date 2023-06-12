@@ -494,8 +494,18 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  // throw new Error('Not implemented');
+  const createdArray = new Array(n).fill(new Array(n).fill(0));
+  const resultArray = createdArray.map((el, i) => el.map((elem, index) => {
+    let item = elem;
+    if (i === index) {
+      item = elem + 1;
+      return item;
+    }
+    return 0;
+  }));
+  return resultArray;
 }
 
 /**
@@ -572,7 +582,6 @@ function group(/* array, keySelector, valueSelector */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Projects each element of the specified array to a sequence
  * and flattens the resulting sequences into one array.
@@ -586,10 +595,10 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  // throw new Error('Not implemented');
+  return arr.map((el) => childrenSelector(el)).flat(Infinity);
 }
-
 
 /**
  * Returns an element from the multidimensional array by the specified indexes.
@@ -603,10 +612,14 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  // throw new Error('Not implemented');
+  const newIndexes = indexes.slice(1);
+  if (indexes.length === 1) {
+    return arr[indexes[0]];
+  }
+  return getElementByIndexes(arr[indexes[0]], newIndexes);
 }
-
 
 /**
  * Swaps the head and tail of the specified array:
@@ -626,10 +639,21 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  // throw new Error('Not implemented');
+  const start = arr.slice(0, Math.floor(arr.length / 2));
+  const end = arr.slice(Math.ceil(arr.length / 2));
+  const mid = Math.floor(arr.length / 2);
+  let resultArray = [];
+  if (arr.length % 2 === 0) {
+    resultArray = [...end, ...start];
+  } else {
+    resultArray = [...end, arr[mid], ...start];
+  }
+  // console.log(resultArray);
+  return resultArray;
 }
-
+// swapHeadAndTail([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 module.exports = {
   findElement,
