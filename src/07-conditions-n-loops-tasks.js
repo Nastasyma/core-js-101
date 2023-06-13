@@ -27,8 +27,19 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  // throw new Error('Not implemented');
+  let msg = '';
+  if (num % 15 === 0) {
+    msg = 'FizzBuzz';
+  } else if (num % 5 === 0) {
+    msg = 'Buzz';
+  } else if (num % 3 === 0) {
+    msg = 'Fizz';
+  } else {
+    msg = num;
+  }
+  return msg;
 }
 
 
@@ -43,8 +54,14 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  // throw new Error('Not implemented');
+  let result = n;
+  const start = 1;
+  for (let i = start; i < n; i += 1) {
+    result *= n - i;
+  }
+  return result;
 }
 
 
@@ -60,10 +77,15 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  // throw new Error('Not implemented');
+  const tempArr = new Array((n2 - n1) + 1);
+  const array = tempArr.fill(n1);
+  const newArray = array.map((num, index) => num + index);
+  // console.log(array);
+  return newArray.reduce((a, b) => a + b, 0);
 }
-
+// getSumBetweenNumbers(5, 10);
 
 /**
  * Returns true, if a triangle can be built with the specified sides a, b, c
@@ -80,8 +102,9 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  // throw new Error('Not implemented');
+  return (a + b - c) * (b + c - a) * (c + a - b) > 0;
 }
 
 
@@ -148,8 +171,11 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  // throw new Error('Not implemented');
+  const first = point.x - circle.center.x;
+  const second = point.y - circle.center.y;
+  return first ** 2 + second ** 2 < circle.radius ** 2;
 }
 
 
@@ -164,10 +190,20 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  // throw new Error('Not implemented');
+  const arrayChar = str.split('');
+  let result = null;
+  for (let i = 0; i < arrayChar.length; i += 1) {
+    const newArrayChar = [...arrayChar];
+    newArrayChar.splice(i, 1);
+    if (!newArrayChar.includes(arrayChar[i])) {
+      result = arrayChar[i];
+      break;
+    }
+  }
+  return result;
 }
-
 
 /**
  * Returns the string representation of math interval,
@@ -191,8 +227,13 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  // throw new Error('Not implemented');
+  const start = Math.min(a, b);
+  const end = Math.max(a, b);
+  const firstChar = isStartIncluded ? '[' : '(';
+  const lastChar = isEndIncluded ? ']' : ')';
+  return `${firstChar}${start}, ${end}${lastChar}`;
 }
 
 
@@ -208,8 +249,9 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  // throw new Error('Not implemented');
+  return str.split('').reverse().join('');
 }
 
 
@@ -225,8 +267,9 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  // throw new Error('Not implemented');
+  return num.toString().split('').reverse().join('');
 }
 
 
@@ -319,8 +362,9 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  // throw new Error('Not implemented');
+  return num.toString(n);
 }
 
 
